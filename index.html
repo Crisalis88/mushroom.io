@@ -86,12 +86,6 @@
 			right: 78vh;
 		}
 
-		@media only screen and (max-width: 650px) {
-		 	nav{
-				right: 1vh;
-			}
-		}
-
 		.nav-item{
 			margin-inline: 2rem;
 			font-size:3.25rem;
@@ -107,15 +101,28 @@
 
 		.improvements{
 			display: grid;
-			grid-template-columns: 10rem 10rem;
-			grid-template-rows: 11rem 11rem;
-			gap: 3rem;
+			grid-template-columns: 20rem 20rem;
+			grid-template-rows: 20rem 20rem;
+			gap: 4rem;
+			top:10rem;
 			maring-top:2rem;
 		}
 
 		.card{
 			padding: 0.5rem;
 			padding-inline: 1rem;
+		}
+
+		@media only screen and (max-width: 650px) {
+		 	nav{
+				right: 1vh;
+			}
+
+			.improvements{
+				grid-template-columns: 10rem 10rem;
+				grid-template-rows: 11rem 11rem;
+				gap:3rem;
+			}
 		}
 	</style>
 	<script>
