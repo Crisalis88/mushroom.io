@@ -130,6 +130,46 @@
 	</style>
 	<script>
 
+		const initialTouchX, initialTouchY, finalTouchX, finalTouchY;
+
+		const swipeThreshold = 100;
+
+		function handleSwipe(startX, endX, onSwipeLeft, onSwipeRight){
+			let horizontalDistance = initialTouchX - finalTouchX;
+			let verticalDistance = initialTouchY - finalTouchY;
+
+			if (Math.abs(horizontalDistance) > Math.abs(verticalDistance) && Math.abs(horizontalDistance) > swipeThreshold){
+				if (finalTouchX < 0){
+					onSwipeLeft();
+				}else{
+					onSwipeRight();
+				}
+			}
+		}
+
+		function swipeLeft(){
+			document.querySelector('.container').style.background = 'red';
+		}
+
+		function swipeRight(){
+			document.querySelector('.container').style.background = 'blue';
+		}
+
+
+		window.onload = function(){
+			window.addEventListener('touchstart', (event) => {
+				initialTouchX = event.touches[0].clientX;
+				initialTouchY = event.touches[0].clientY;
+			})
+
+			window.addEventListener('touchend', (event) => {
+				finalTouchX = event.changedTouches[0].clientX;
+				finalTouchY = event.changedTouches[0].clientY;
+
+				handleSwipe(initialTouchX, finalTouchX, swipeLeft, swipeRight);
+			})
+		}
+
 		// here is the logic of gaining mushroom coins
 		let money = document.querySelector('.money');
 
