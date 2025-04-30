@@ -178,21 +178,12 @@
 
 			if (Math.abs(horizontalDistance) > Math.abs(verticalDistance) && Math.abs(horizontalDistance) > swipeThreshold){
 				if (finalTouchX < 0){
-					onSwipeLeft();
+					showShopPage();
 				}else{
-					onSwipeRight();
+					showMainPage();
 				}
 			}
 		}
-
-		function swipeLeft(){
-			showShopPage();
-		}
-
-		function swipeRight(){
-			showMainPage();
-		}
-
 
 		window.addEventListener('touchstart', (event) => {
 			initialTouchX = event.touches[0].clientX;
