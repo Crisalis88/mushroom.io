@@ -129,7 +129,42 @@
 		}
 	</style>
 	<script>
+		let money = document.querySelector('.money');
 
+		if (localStorage.getItem('moneyField')){
+			money.innerHTML = localStorage.getItem('moneyField');
+		} else{
+			money.innerHTML = 1;
+		}
+
+		const gainCoin = function(){
+			money.innerHTML = parseInt(money.innerHTML) + 1;
+			localStorage.setItem('moneyField', money.innerHTML)
+		}
+
+
+		// navigation logic
+		const shopPage = document.querySelector('.shop-page')
+		const mainPage = document.querySelector('.main-page');
+
+
+
+		function showPage(pageToShow, pageToHide){
+			pageToHide.style.display = 'none';
+			pageToShow.style.display = 'block';
+
+			pageToShow.style.animationName = 'opacityAnimation';
+			pageToShow.style.animationDuration = '1.2s';
+		}
+
+		function showMainPage(){
+			showPage(mainPage, shopPage);
+		}
+
+		function showShopPage(){
+			showPage(shopPage, mainPage);
+		}
+		
 		const initialTouchX, initialTouchY, finalTouchX, finalTouchY;
 
 		const swipeThreshold = 100;
@@ -167,43 +202,6 @@
 
 			handleSwipe(initialTouchX, finalTouchX, swipeLeft, swipeRight);
 		})
-
-		// here is the logic of gaining mushroom coins
-		let money = document.querySelector('.money');
-
-		if (localStorage.getItem('moneyField')){
-			money.innerHTML = localStorage.getItem('moneyField');
-		} else{
-			money.innerHTML = 1;
-		}
-
-		function gainCoin(){
-			money.innerHTML = parseInt(money.innerHTML) + 1;
-			localStorage.setItem('moneyField', money.innerHTML)
-		}
-
-
-		// navigation logic
-		const shopPage = document.querySelector('.shop-page')
-		const mainPage = document.querySelector('.main-page');
-
-
-
-		function showPage(pageToShow, pageToHide){
-			pageToHide.style.display = 'none';
-			pageToShow.style.display = 'block';
-
-			pageToShow.style.animationName = 'opacityAnimation';
-			pageToShow.style.animationDuration = '1.2s';
-		}
-
-		function showMainPage(){
-			showPage(mainPage, shopPage);
-		}
-
-		function showShopPage(){
-			showPage(shopPage, mainPage);
-		}
 
 
 
