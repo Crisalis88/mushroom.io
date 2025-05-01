@@ -172,7 +172,7 @@
 
 		const swipeThreshold = 100;
 
-		function handleSwipe(startX, endX, onSwipeLeft, onSwipeRight){
+		function handleSwipe(startX, endX){
 			let horizontalDistance = initialTouchX - finalTouchX;
 			let verticalDistance = initialTouchY - finalTouchY;
 
@@ -194,7 +194,7 @@
 			finalTouchX = event.changedTouches[0].clientX;
 			finalTouchY = event.changedTouches[0].clientY;
 
-			handleSwipe(initialTouchX, finalTouchX, swipeLeft, swipeRight);
+			handleSwipe(initialTouchX, finalTouchX);
 		})
 
 
