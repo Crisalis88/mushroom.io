@@ -29,11 +29,9 @@
 				</div>
 			</div>
 		</div>
-		
-		<nav>
-			<div onclick = 'showMainPage()' class = 'nav-item'>Home</div>
-			<div onclick = 'showShopPage()' class = 'nav-item'>Shop</div>
-		</nav>
+      <div class = 'swipeHere' style = "height:50vh">
+        
+      </div>
 	</div>
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
@@ -80,22 +78,6 @@
 			}
 		}
 		
-		nav{
-			position: fixed;
-			display: flex;
-			bottom: 1rem;
-			right: 78vh;
-		}
-
-		.nav-item{
-			margin-inline: 2rem;
-			font-size:3.25rem;
-		}
-
-		.nav-item:hover{
-			color: #fadf8C;
-		}
-
 		.shop-page{
 			display: none;
 		}
@@ -130,7 +112,8 @@
 	</style>
 	<script>
 		let money = document.querySelector('.money');
-
+    let mushroomIMG = document.querySelector('.mushroom');
+    
 		if (localStorage.getItem('moneyField')){
 			money.innerHTML = localStorage.getItem('moneyField');
 		} else{
@@ -141,8 +124,7 @@
 			money.innerHTML = parseInt(money.innerHTML) + 1;
 			localStorage.setItem('moneyField', money.innerHTML)
 		}
-
-
+    
 		// navigation logic
 		const shopPage = document.querySelector('.shop-page')
 		const mainPage = document.querySelector('.main-page');
@@ -165,39 +147,60 @@
 			showPage(shopPage, mainPage);
 		}
 		
-		let initialTouchX;
-		let initialTouchY;
-		let finalTouchX;
-		let finalTouchY;
+		let initialTouchX, initialTouchY, finalTouchX, finalTouchY;
+    
+    const swipeThreshold = 95;
 
-		const swipeThreshold = 100;
-
-		function handleSwipe(startX, endX){
+		let handleHorizontSwipe = function(startX, startY, endX, endY, actionOne, actionTwo){
 			let horizontalDistance = initialTouchX - finalTouchX;
 			let verticalDistance = initialTouchY - finalTouchY;
 
 			if (Math.abs(horizontalDistance) > Math.abs(verticalDistance) && Math.abs(horizontalDistance) > swipeThreshold){
 				if (finalTouchX < 0){
-					showShopPage();
+					actionOne()
 				}else{
-					showMainPage();
+          actionTwo();
 				}
 			}
 		}
+    
+    const swipeHereDiv = document.querySelector('.swipeHere');
 
-		window.addEventListener('touchstart', (event) => {
+		swipeHereDiv.addEventListener('touchstart', (event) => {
 			initialTouchX = event.touches[0].clientX;
 			initialTouchY = event.touches[0].clientY;
 		})
 
-		window.addEventListener('touchend', (event) => {
+		swipeHereDiv.addEventListener('touchend', (event) => {
 			finalTouchX = event.changedTouches[0].clientX;
 			finalTouchY = event.changedTouches[0].clientY;
 
-			handleSwipe(initialTouchX, finalTouchX);
-		})
+			handleHorizontSwipe(initialTouchX, initialTouchY, finalTouchX, finalTouchY, showShopPage, showMainPage);
+		});
+    
+    let initialTouchXM, initialTouchYM, finalTouchXM, finalTouchYM;
 
+    let HandleVerticalSwipe = function(){
+      let horizontalDistance = initialTouchXM - finalTouchXM;
+      let verticalDistance = initialTouchYM - finalTouchYM;
+      
+      
+      if (Math.abs(verticalDistance) > Math.abs(horizontalDistance) && Math.abs(verticalDistance) > swipeThreshold){
+        console.log('nigga 228')
+      }
+    }
 
+    mushroomIMG.addEventListener('touchstart', (event) => {
+      initialTouchXM = event.touches[0].clientX;
+      initialTouchYM = event.touches[0].clientY;
+    });
+
+    mushroomIMG.addEventListener('touchend', (event) => {
+      finalTouchXM = event.changedTouches[0].clientX;
+      finalTouchYM = event.changedTouches[0].clientY;
+      
+      HandleVerticalSwipe();
+    });
 
 	</script>
 </body>
