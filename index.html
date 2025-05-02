@@ -152,11 +152,11 @@
     const swipeThreshold = 55;
 
 		let handleSwipe = function(startX, startY, endX, endY, actionOne, actionTwo){
-			let horizontalDistance = finalTouchX - initialTouchX;
-			let verticalDistance = finalTouchY - initialTouchY;
+			let horizontalDistance = initialTouchX - finalTouchX;
+			let verticalDistance = initialTouchY - finalTouchY;
 
-			if (Math.abs(horizontalDistance) < Math.abs(verticalDistance) && Math.abs(verticalDistance) > swipeThreshold){
-				if (finalTouchY < 0){
+			if (Math.abs(horizontalDistance) > Math.abs(verticalDistance) && Math.abs(horizontalDistance) > swipeThreshold){
+				if (finalTouchX < 0){
 					actionOne()
 				}else{
           				actionTwo();
