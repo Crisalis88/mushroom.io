@@ -149,7 +149,7 @@
 		
 		let initialTouchX, initialTouchY, finalTouchX, finalTouchY;
     
-    const swipeThreshold = 35;
+    const swipeThreshold = 55;
 
 		let handleHorizontSwipe = function(startX, startY, endX, endY, actionOne, actionTwo){
 			let horizontalDistance = initialTouchX - finalTouchX;
@@ -159,7 +159,7 @@
 				if (finalTouchX < 0){
 					actionOne()
 				}else{
-          actionTwo();
+          				actionTwo();
 				}
 			}
 		}
@@ -178,30 +178,6 @@
 			handleHorizontSwipe(initialTouchX, initialTouchY, finalTouchX, finalTouchY, showShopPage, showMainPage);
 		});
     
-    let initialTouchXM, initialTouchYM, finalTouchXM, finalTouchYM;
-
-    let HandleVerticalSwipe = function(){
-      let horizontalDistance = initialTouchXM - finalTouchXM;
-      let verticalDistance = initialTouchYM - finalTouchYM;
-      
-      
-      if (Math.abs(verticalDistance) > Math.abs(horizontalDistance) && Math.abs(verticalDistance) > swipeThreshold){
-        console.log('nigga 228')
-      }
-    }
-
-    mushroomIMG.addEventListener('touchstart', (event) => {
-      initialTouchXM = event.touches[0].clientX;
-      initialTouchYM = event.touches[0].clientY;
-    });
-
-    mushroomIMG.addEventListener('touchend', (event) => {
-      finalTouchXM = event.changedTouches[0].clientX;
-      finalTouchYM = event.changedTouches[0].clientY;
-      
-      HandleVerticalSwipe();
-    });
-
 	</script>
 </body>
 </html>
