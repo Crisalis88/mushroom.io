@@ -68,6 +68,10 @@
 			transform: scale(1.055);
 		}
 
+		.swipeHere{
+			background:green;
+		}
+		
 		@keyframes opacityAnimation{
 			0%{
 				opacity: 0;
@@ -175,6 +179,8 @@
 			finalTouchX = event.changedTouches[0].clientX;
 			finalTouchY = event.changedTouches[0].clientY;
 
+			console.log(finalTouchX, finalTouchY);
+			
 			handleSwipe(initialTouchX, initialTouchY, finalTouchX, finalTouchY, showShopPage, showMainPage);
 		});
     
