@@ -29,9 +29,13 @@
 				</div>
 			</div>
 		</div>
-      <div class = 'swipeHere' style = "height:45vh">
-        
-      </div>
+
+	<nav>
+		<div onclick = "showMainPage()">
+			Home
+		</div>
+		<div onclick = "showShopPage()">Shop</div>
+	</nav>
 	</div>
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
@@ -148,39 +152,6 @@
 			showPage(shopPage, mainPage);
 		}
 		
-		let initialTouchX, initialTouchY, finalTouchX, finalTouchY;
-    
-    const swipeThreshold = 55;
-
-		let handleSwipe = function(startX, startY, endX, endY, actionOne, actionTwo){
-			let horizontalDistance = initialTouchX - finalTouchX;
-			let verticalDistance = initialTouchY - finalTouchY;
-
-			if (Math.abs(horizontalDistance) > Math.abs(verticalDistance) && Math.abs(horizontalDistance) > swipeThreshold){
-				if (finalTouchX < 0){
-					actionOne()
-				}else{
-          				actionTwo();
-				}
-			}
-		}
-    
-    const swipeHereDiv = document.querySelector('.swipeHere');
-
-		swipeHereDiv.addEventListener('touchstart', (event) => {
-			initialTouchX = event.touches[0].clientX;
-			initialTouchY = event.touches[0].clientY;
-		})
-
-		swipeHereDiv.addEventListener('touchend', (event) => {
-			finalTouchX = event.changedTouches[0].clientX;
-			finalTouchY = event.changedTouches[0].clientY;
-
-			console.log(finalTouchX, finalTouchY);
-			
-			handleSwipe(initialTouchX, initialTouchY, finalTouchX, finalTouchY, showShopPage, showMainPage);
-		});
-    
 	</script>
 </body>
 </html>
