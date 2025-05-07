@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="eng">
 <head>
 	<meta charset="utf-8">
@@ -109,7 +109,7 @@
 
 		@media only screen and (max-width: 650px) {
 			body{
-				font-size:3.75rem;
+				font-size:3.25rem;
 			}
 			
 		 	nav{
@@ -142,7 +142,6 @@
 		const mainPage = document.querySelector('.main-page');
 
 
-
 		function showPage(pageToShow, pageToHide){
 			pageToHide.style.display = 'none';
 			pageToShow.style.display = 'block';
@@ -158,18 +157,26 @@
 		function showShopPage(){
 			showPage(shopPage, mainPage);
 		}
+    
+    let touchMStart;
+    mushroomIMG.addEventListener("touchstart", () => {
+      touchMStart = new Date().getSeconds();
+      console.log("touch start:" + touchMStart)
+    });
 
-		
-		let touchMStart;
-		mushroomIMG.addEventListener("touchstart", () => {
-		    touchMstart = new Data();
-		});
-	
-	   	mushroom.addEventListener("touchend", () => {
-		      	let now = new Data();
-	
-	     		console.log(now - touchMStart);
-	     		console.log("touch end event work!");
-	    	})
+    mushroomIMG.addEventListener("touchend", () => {
+      let touchEnd = new Date().getSeconds()
+      console.log("touch end: " + touchEnd)
+      let difference = touchEnd - touchMStart;
+
+      console.log("difference: " + difference);
+
+      if (difference >= 2){
+        console.log("mushroom description");
+      }
+    });
+	</script>
 </body>
 </html>
+
+
