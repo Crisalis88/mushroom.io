@@ -158,7 +158,18 @@
 		function showShopPage(){
 			showPage(shopPage, mainPage);
 		}
+
 		
-	</script>
+		let touchMStart;
+		mushroomIMG.addEventListener("touchstart", () => {
+		    touchMstart = new Data();
+		});
+	
+	   	mushroom.addEventListener("touchend", () => {
+		      	let now = new Data();
+	
+	     		console.log(now - touchMStart);
+	     		console.log("touch end event work!");
+	    	})
 </body>
 </html>
