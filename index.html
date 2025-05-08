@@ -1,4 +1,3 @@
-
 <html lang="eng">
 <head>
 	<meta charset="utf-8">
@@ -42,13 +41,14 @@
 
 		body{
 			background: #2B2545;
-			background: linear-gradient(357deg, rgba(37, 37, 70, 1) 14%, rgba(0, 0, 38, 1) 75%);
+			background: linear-gradient(357deg, rgba(32, 32, 65, 1) 12%, rgba(0, 0, 38, 1) 70%);
 			background-repeat: no-repeat;
 			background-size: auto 100vh;
 			font-family: 'JetBrains Mono';
 			font-weight: 700;
 			font-size: 4rem;
 			color: #f8ad5a;
+      user-select:none;
 		}
 
 		.container{
@@ -65,14 +65,21 @@
 			width:13rem;
 			height:12rem;
 			margin-top: 7rem;
-			transition: all 0.043s;
+			transition: all 0.053s;
 		}
 
 		.mushroom:active{
 			transform: scale(1.055);
 		}
 
-		
+	  .descriptionBlock{
+      background:rgba(194, 194, 194, 0.17);
+      border:2px solid #dedede;
+      border-radius:0.5em;
+      margin-top:3rem;
+      font-size:2.25rem;
+    }	
+
 		@keyframes opacityAnimation{
 			0%{
 				opacity: 0;
@@ -97,9 +104,11 @@
 
 		nav{
 			position:absolute;
-			right:1.25vh;
+			right:50vh;
 			bottom:0.25vh;
-			
+      display:flex;
+      gap:3rem;
+			right: 5.75vh;
 		}
 
 		.card{
@@ -108,21 +117,28 @@
 		}
 
 		@media only screen and (max-width: 650px) {
-		 	nav{
-				right: 1vh;
+			body{
+				font-size:3.25rem;
 			}
-
+			
 			.improvements{
 				grid-template-rows: 11rem 11rem;
 				gap:2rem;
-				font-size:3.5rem;
 			}
 		}
 	</style>
 	<script>
 		let money = document.querySelector('.money');
+
     let mushroomIMG = document.querySelector('.mushroom');
-    
+    class Mushroom{
+      constructor(name){
+        this.name = name;
+        this.img = mushroomIMG;
+        this.coinsPerTap = 1;
+      }
+    } 
+
 		if (localStorage.getItem('moneyField')){
 			money.innerHTML = localStorage.getItem('moneyField');
 		} else{
@@ -162,18 +178,23 @@
     });
 
     mushroomIMG.addEventListener("touchend", () => {
-      let touchEnd = new Date().getSeconds()
+      let touchEnd = new Date().getSeconds();
       console.log("touch end: " + touchEnd)
       let difference = touchEnd - touchMStart;
 
       console.log("difference: " + difference);
 
       if (difference >= 2){
-        console.log("mushroom description");
+        let divDescription = document.createElement("div");
+        let darkMicelium = new Mushroom("Dark Micelium");
+
+        divDescription.innerHTML = `Name: ${darkMicelium.name} <br> Coins Per Tap: ${darkMicelium.coinsPerTap}`;
+
+        divDescription.classList.add('descriptionBlock');
+  
+        document.querySelector('.main-page').append(divDescription); 
       }
     });
 	</script>
 </body>
 </html>
-
-
