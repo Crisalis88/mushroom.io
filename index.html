@@ -73,11 +73,12 @@
 		}
 
 	  .descriptionBlock{
-      background:rgba(194, 194, 194, 0.17);
+      background:rgba(192, 192, 192, 0.15);
       border:2px solid #dedede;
       border-radius:0.5em;
       margin-top:3rem;
-      font-size:2.25rem;
+      padding-block:1.25rem;
+      font-size:2rem;
     }	
 
 		@keyframes opacityAnimation{
@@ -191,8 +192,11 @@
         divDescription.innerHTML = `Name: ${darkMicelium.name} <br> Coins Per Tap: ${darkMicelium.coinsPerTap}`;
 
         divDescription.classList.add('descriptionBlock');
-  
-        document.querySelector('.main-page').append(divDescription); 
+        mainPage.append(divDescription); 
+
+        divDescription.addEventListener('click', () => {
+          divDescription.remove();
+        })
       }
     });
 	</script>
