@@ -1,3 +1,4 @@
+
 <html lang="eng">
 <head>
 	<meta charset="utf-8">
@@ -9,7 +10,7 @@
 	<div class="container">
 		<div class = 'main-page'>
 			<div class="money"></div>
-			<img onclick = 'gainCoin()' class = 'mushroom' src="./assets/mushroom.png">
+			<img class = 'mushroom' src="./assets/mushroom.png">
 		</div>
 
 		<div class="shop-page">
@@ -72,13 +73,14 @@
 			transform: scale(1.055);
 		}
 
-	  .descriptionBlock{
+	  .banner{
+      position:relative;
+      top:4rem;
       background:rgba(192, 192, 192, 0.15);
       border:2px solid #dedede;
       border-radius:0.5em;
-      margin-top:3rem;
       padding-block:1.25rem;
-      font-size:2rem;
+      font-size:1.75rem;
     }	
 
 		@keyframes opacityAnimation{
@@ -107,8 +109,8 @@
 			position:absolute;
 			right:50vh;
 			bottom:0.75vh;
-      			display:flex;
-      			gap:3rem;
+      display:flex; 
+      gap:3rem;
 			right: 5.75vh;
 		}
 
@@ -127,6 +129,10 @@
 				gap:2rem;
 			}
 		}
+
+    .propertyValue{
+      color:#33DDDD;
+    }
 	</style>
 	<script>
 		let money = document.querySelector('.money');
@@ -150,7 +156,19 @@
 			money.innerHTML = parseInt(money.innerHTML) + 1;
 			localStorage.setItem('moneyField', money.innerHTML)
 		}
-    
+   
+    mushroomIMG.addEventListener('touchstart', (event) => {
+      if (event.touches.length > 1){
+        let divBanner = document.createElement('div');
+
+        divBanner.innerHTML = "<p>nigga are you stupid!!</p>";
+        divBanner.classList.add('banner');
+
+        document.body.append(divBanner);
+      }
+
+      gainCoin();
+    })
 		// navigation logic
 		const shopPage = document.querySelector('.shop-page')
 		const mainPage = document.querySelector('.main-page');
@@ -189,16 +207,20 @@
         let divDescription = document.createElement("div");
         let darkMicelium = new Mushroom("Dark Micelium");
 
-        divDescription.innerHTML = `Name: ${darkMicelium.name} <br> Coins Per Tap: ${darkMicelium.coinsPerTap}`;
+        divDescription.innerHTML = `Name: <span class = "propertyValue" >${darkMicelium.name}</span> <br> Coins Per Tap: <span class = "propertyValue">${darkMicelium.coinsPerTap}</span>`;
 
-        divDescription.classList.add('descriptionBlock');
+        divDescription.classList.add('banner');
         mainPage.append(divDescription); 
 
-        divDescription.addEventListener('click', () => {
+        divDescription.style.animationName = 'opacityAnimation';
+	divDescription.style.animationDuration = '0.8s';
+
+        divDescription.addEventListener('touchstart', () => {
           divDescription.remove();
-        })
+        });
       }
     });
+
 	</script>
 </body>
-</html>
+</html> 
