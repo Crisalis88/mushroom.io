@@ -178,7 +178,7 @@
 		}
    
     mushroomIMG.addEventListener('touchstart', (event) => {
-      if (event.touches.length > 0){
+      if (event.touches.length > 2){
 
         money.innerHTML = parseInt(money.innerHTML) - 100;
 			  localStorage.setItem('moneyField', money.innerHTML);
@@ -187,10 +187,10 @@
         
         // meme img styles
         divBanner.style.position = "relative";
-        divBanner.style.width = '24rem';
+        divBanner.style.width = '22rem';
 
         divBanner.style.top = '3rem'
-        divBanner.style.left = '5.5rem';
+        divBanner.style.left = '3.75rem';
 
         divBanner.setAttribute("src", "./assets/banner.jpeg");
         document.body.append(divBanner);
