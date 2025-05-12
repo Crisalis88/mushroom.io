@@ -15,8 +15,8 @@
 		<div class="shop-page">
 			<div class="improvements">
 				<div class="card">
-					<h2>Buy Second Finger</h2>
-          <p>200</p>
+					<h2></h2>
+          				<p>100</p>
 				</div>
 				<div class="card">
 					<h2></h2>
@@ -178,24 +178,6 @@
 		}
    
     mushroomIMG.addEventListener('touchstart', (event) => {
-      if (event.touches.length > 2){
-
-        money.innerHTML = parseInt(money.innerHTML) - 100;
-			  localStorage.setItem('moneyField', money.innerHTML);
-
-        let divBanner = document.createElement('img');
-        
-        // meme img styles
-        divBanner.style.position = "relative";
-        divBanner.style.width = '22rem';
-
-        divBanner.style.top = '3rem'
-        divBanner.style.left = '3.75rem';
-
-        divBanner.setAttribute("src", "./assets/banner.jpeg");
-        document.body.append(divBanner);
-      }
-
       gainCoin();
     })
 		// navigation logic
@@ -249,6 +231,23 @@
         });
       }
     });
+
+	document.querySelector('.card').addEventListener('touchstart', () => {
+		money.innerHTML = parseInt(money.innerHTML) - 100;
+		localStorage.setItem('moneyField', money.innerHTML);
+
+        	let divBanner = document.createElement('img');
+        
+        	// meme img styles
+        	divBanner.style.position = "relative";
+        	divBanner.style.width = '22rem';
+
+        	divBanner.style.top = '3rem'
+        	divBanner.style.left = '3.75rem';
+
+        	divBanner.setAttribute("src", "./assets/banner.jpeg");
+        	document.body.append(divBanner);
+	})
 	</script>
 </body>
 </html> 
